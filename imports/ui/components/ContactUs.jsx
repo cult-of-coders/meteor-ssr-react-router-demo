@@ -15,7 +15,12 @@ export default () => {
         <div>
             <h1>Contact Us Page</h1>
             <br/>
-            <HeavyComponent />
+
+            {/* Avoid loading this super heavy component on the server, it may blow-up the RAM ?!*/}
+            {Meteor.isClient
+                ? <HeavyComponent />
+                : <div>Loading</div>
+            }
 
             <Link to="/">Go back home</Link>
         </div>
